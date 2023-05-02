@@ -1,2 +1,5 @@
-# game.kbc.question.service
-KBC game question microservice
+```plantuml
+@startuml
+Alice -> Bob: Hello
+Bob --> Alice: Hi
+@enduml
