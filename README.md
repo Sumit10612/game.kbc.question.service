@@ -1,44 +1,40 @@
 ```plantuml
 @startuml
-!define Table(name,desc) class name as "desc" << (T,#FFAAAA) >>
-!define primary_key(x) <u>x</u>
-!define foreign_key(x) x
-hide circle
-skinparam classAttributeIconSize 0
+' hide the spot
+' hide circle
 
-Table(Customer, "Customer") {
-  + primary_key(id)
+' avoid problems with angled crows feet
+skinparam linetype ortho
+
+entity "Entity01" as e01 {
+  *e1_id : number <<generated>>
   --
-  name
-  address
-  email
+  *name : text
+  description : text
 }
 
-Table(Order, "Order") {
-  + primary_key(id)
+entity "Entity02" as e02 {
+  *e2_id : number <<generated>>
   --
-  date
-  amount
-  + foreign_key(customer_id)
+  *e1_id : number <<FK>>
+  other_details : text
 }
 
-Table(OrderItem, "OrderItem") {
-  + primary_key(id)
+entity "Entity03" as e03 {
+  *e3_id : number <<generated>>
   --
-  quantity
-  + foreign_key(order_id)
-  + foreign_key(product_id)
+  e1_id : number <<FK>>
+  other_details : text
 }
 
-Table(Product, "Product") {
-  + primary_key(id)
+entity "Entity04" as e04 {
+  *e4_id : number <<generated>>
   --
-  name
-  price
+  e1_id : number <<FK>>
+  other_details : text
 }
 
-Customer --{ Order
-Order --{ OrderItem
-OrderItem }-- Product
+e01 ||..o{ e02
+e01 |o..o{ e03
+e01 |o..o{ e04
 @enduml
-
