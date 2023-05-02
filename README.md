@@ -1,4 +1,4 @@
-```plantuml
+```
 @startuml
 ' hide the spot
 ' hide circle
